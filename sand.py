@@ -12,9 +12,9 @@ class Sand:
         boardHeight, boardWidth = board.shape
         if self.boardY + 1 < boardHeight: 
             
-            canDown = not board[self.boardY + 1, self.boardX]
-            canDownLeft = self.boardX - 1 >= 0 and not board[self.boardY + 1, self.boardX - 1]
-            canDownRight = self.boardX + 1 < boardWidth and not board[self.boardY + 1, self.boardX + 1]
+            canDown = not board[self.boardY + 1, self.boardX] #is down empty?
+            canDownLeft = self.boardX - 1 >= 0 and not board[self.boardY + 1, self.boardX - 1] #is down left empty?
+            canDownRight = self.boardX + 1 < boardWidth and not board[self.boardY + 1, self.boardX + 1] #is down right empty?
             
             xModifier = 0
             yModifier = 0

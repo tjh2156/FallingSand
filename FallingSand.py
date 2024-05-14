@@ -3,6 +3,7 @@ import sand
 
 pygame.init()
 
+#define graphics-related global variables
 screenWidth = 750
 screenHeight = 750
 screenSize = screenWidth, screenHeight
@@ -10,12 +11,14 @@ black = 0,0,0
 white = 255,255,255
 screen = pygame.display.set_mode(screenSize)
 
+#define the size of a piece of sand
 sandWidthHeight = 5
 boardWidth = screenWidth//sandWidthHeight
 boardHeight = screenHeight//sandWidthHeight
 board = np.full((boardHeight, boardWidth), False)
 
 def start():
+    #set up simulation
     starting = True
     global board
     screen.fill(black)
@@ -50,8 +53,7 @@ def start():
         for sandEntity in currentSands:
                 updateSand(sandEntity) 
 
-        #spawn sand
-        #TODO: sand dissapears when going down sides
+        #spawn sand on mouse position
         if holdingMouseDown :
             mouseX, mouseY = pygame.mouse.get_pos()
             boardSandX = mouseX // sandWidthHeight
@@ -63,7 +65,10 @@ def start():
                     currentSands.insert(len(currentSands), tempSand)
                     
                     board[boardSandY, boardSandX] = True
-        currentSands.sort(key=lambda sand: sand.boardY, reverse=True)
+
+        currentSands.sort(key=lambda sand: sand.boardY, reverse=True) #sort sand so the lowest pieces of sand get updated first
+
+        #render sand
         for sandEntity in currentSands :
             renderSand(sandEntity)
 
